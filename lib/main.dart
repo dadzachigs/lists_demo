@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lists_demo/quotes.dart';
 import 'quotes.dart';
+import 'quote_card.dart';
 
 void main() =>runApp(MaterialApp(
     home: MyCards()
@@ -18,49 +19,16 @@ class MyCards extends StatefulWidget {
 class _MyCardsState extends State<MyCards> {
 
   List<Quotes> quotes = [
-     Quotes(quote:"Watch in silence", author:"Darlington Chigumbu"),
-     Quotes(quote:"If you really want it sacrifice for it", author:"Darlington Chigumbu"),
-     Quotes(quote:"Those who are determined will get to the finishing line", author:"Darlington Chigumbu"),
+     Quotes(quote:"Watch in silence so that you dont disturb your enermy while making mistakes", author:"Darlington Chigumbu"),
+
+
+
+    Quotes(quote:"The value of money is not in the money, but in what the money can buy..use your money to get value", author:"Darlington Chigumbu"),
+
+    Quotes(quote:"Your mind is like your garden, if you dont work on it it will produce weeds, if you work on it it will give you good plants..either way you get something.", author:"Darlington Chigumbu"),
   ];
 
-  Widget quoteTemplate(quote){
 
-    return Card(
-    margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-      child: Padding(
-
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget> [
-            Text(
-              quote.quote,
-              style: TextStyle(
-                color:Colors.black54,
-                fontSize: 18.0
-
-              ),
-
-            ),
-        SizedBox(height: 3.0),
-
-            Text(
-              quote.author,
-              style: TextStyle(
-                color:Colors.red[600]
-
-              ),
-            ),
-          ],
-
-        ),
-      ),
-
-    );
-
-
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +47,24 @@ class _MyCardsState extends State<MyCards> {
         backgroundColor: Colors.redAccent[400],
       ),
 
-      body: Column(
-        children: quotes.map((quote) =>quoteTemplate(quote)).toList(),
+      body: Container(
+        color: Colors.grey[300],
+
+        child: Column(
+          children: quotes.map((quote) =>QuoteCard(
+              quote: quote,
+            delete: (){
+                setState(() {
+                 quotes.remove(quote);
+                });
+            },
+          )).toList(),
+        ),
       ),
+
     );
   }
 }
+
+
 
